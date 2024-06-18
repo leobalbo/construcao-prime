@@ -1,6 +1,6 @@
 import { HeaderComponent } from '@/components/header/header'
+import { Toaster } from '@/components/shadcn/toaster'
 import { ThemeProvider } from '@/components/theme-provider'
-import { Toaster } from '@/components/ui/toaster'
 import type { Metadata } from 'next'
 import './globals.css'
 
