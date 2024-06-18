@@ -1,22 +1,30 @@
 import { auth } from '@/services/auth'
 import { use } from 'react'
-import { DrawerDialogDemo } from './_components/login-dialog'
-import { NavigationMenuDemo } from './_components/navigation'
-import { UserInfo } from './_components/user-info'
+import { LogoLinkSVG } from '../logo'
+import { DrawerDialogDemo } from './(components)/login-button'
+import { NavigationDesktop } from './(components)/navigation-desktop'
+import { NavMobile } from './(components)/navigation-mobile'
+import { ModeToggle } from './(components)/theme-switcher'
+import { UserInfo } from './(components)/user-dropdown'
 
 export function HeaderComponent() {
   const session = use(auth())
   return (
-    <header className="top-0 z-50 flex w-full items-center justify-between px-32 py-4">
-      <div className="flex items-center">
-        <span className="text-lg font-bold">Contrução Prime</span>
+    <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6 lg:px-16">
+      <NavMobile />
+      <LogoLinkSVG className="hidden lg:flex" />
+      <div className="flex w-full justify-center">
+        <NavigationDesktop />
       </div>
-      <NavigationMenuDemo />
-      {session?.user?.email ? (
-        <UserInfo user={session?.user} />
-      ) : (
-        <DrawerDialogDemo />
-      )}
+      <div className="ml-auto flex items-center gap-2">
+        {/* <LanguageSlector /> */}
+        <ModeToggle />
+        {session?.user?.email ? (
+          <UserInfo user={session?.user} />
+        ) : (
+          <DrawerDialogDemo />
+        )}
+      </div>
     </header>
   )
 }

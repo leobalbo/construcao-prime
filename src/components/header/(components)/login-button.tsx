@@ -1,5 +1,5 @@
 'use client'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/shadcn/button'
 import {
   Dialog,
   DialogClose,
@@ -8,10 +8,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { useToast } from '@/components/ui/use-toast'
+} from '@/components/shadcn/dialog'
+import { Input } from '@/components/shadcn/input'
+import { Label } from '@/components/shadcn/label'
+import { useToast } from '@/components/shadcn/use-toast'
 import { cn } from '@/lib/utils'
 import { LucideLogIn } from 'lucide-react'
 import { signIn } from 'next-auth/react'
@@ -24,7 +24,7 @@ export function DrawerDialogDemo() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="flex items-center">
+        <Button className="">
           <LucideLogIn className="mr-2 h-4 w-4" />
           Login
         </Button>
