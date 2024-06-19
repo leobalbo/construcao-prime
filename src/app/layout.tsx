@@ -1,4 +1,3 @@
-import { HeaderComponent } from '@/components/header/header'
 import { Toaster } from '@/components/shadcn/toaster'
 import { ThemeProvider } from '@/components/theme-provider'
 import type { Metadata } from 'next'
@@ -25,7 +24,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <HeaderComponent />
           <main>{children}</main>
           <Toaster />
         </ThemeProvider>
