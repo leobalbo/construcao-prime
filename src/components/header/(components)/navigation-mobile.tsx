@@ -1,17 +1,18 @@
 'use client'
-import { LogoLinkSVG } from '@/components/logo'
+
 import { Button } from '@/components/shadcn/button'
 import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from '@/components/shadcn/navigation-menu'
-import { Sheet, SheetContent, SheetTrigger } from '@/components/shadcn/sheet'
-import { Menu, Package } from 'lucide-react'
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/shadcn/sheet'
+import { LogoSVG } from '@/components/utils/logo'
+import { Menu } from 'lucide-react'
 import Link from 'next/link'
 import { ReactElement } from 'react'
+import { getMenuList } from './menu-list'
 
 type MenuItemProps = {
   href: string
@@ -21,53 +22,58 @@ type MenuItemProps = {
 
 function MenuItem(props: MenuItemProps) {
   return (
-    <NavigationMenuItem>
-      <Link
-        href={props.href}
-        className="flex w-full items-center py-2 text-lg font-semibold"
-        prefetch={false}
-      >
-        <NavigationMenuLink className={`${navigationMenuTriggerStyle()} px-0`}>
-          {props.icon}
-          {props.name}
-        </NavigationMenuLink>
+    <Button asChild variant="ghost">
+      <Link href={props.href} className="" prefetch={false}>
+        {props.icon}
+        {props.name}
       </Link>
-    </NavigationMenuItem>
+    </Button>
   )
 }
 
 export function NavMobile() {
+  const menuGroups = getMenuList()
+
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline" size="icon" className="lg:hidden">
+        <Button variant="invisible" size="icon" className="lg:hidden">
           <Menu className="h-6 w-6" />
           <span className="sr-only">Abrir menu de navegação</span>
         </Button>
       </SheetTrigger>
 
       <SheetContent side="right" className="h-full w-full">
-        <LogoLinkSVG />
+        <div className="flex flex-col space-y-4">
+          <SheetHeader>
+            <SheetTitle className="flex justify-center">
+              <Link href="/" className="flex justify-center space-x-4">
+                <LogoSVG width="24px" height="24px" />
+                <span>Construção Prime</span>
+              </Link>
+            </SheetTitle>
+          </SheetHeader>
 
-        <NavigationMenu>
-          <NavigationMenuList className="grid gap-2 py-6">
-            <MenuItem
-              href="#"
-              name="Produto"
-              icon={
-                <Package size={16} strokeWidth={1} className="mr-2 h-4 w-4" />
-              }
-            />
-
-            <MenuItem
-              href="#"
-              name="Produto"
-              icon={
-                <Package size={16} strokeWidth={1} className="mr-2 h-4 w-4" />
-              }
-            />
-          </NavigationMenuList>
-        </NavigationMenu>
+          {menuGroups.map((group, index) => (
+            <div key={index} className="flex flex-col space-y-4">
+              {group.groupLabel.trim() && (
+                <p className="flex justify-center truncate text-sm font-medium text-muted-foreground">
+                  {group.groupLabel}
+                </p>
+              )}
+              {group.menus.map((menu, menuIndex) => (
+                <MenuItem
+                  key={menuIndex}
+                  href={menu.href}
+                  name={menu.label}
+                  icon={
+                    <menu.icon size={16} strokeWidth={1} className="mr-2" />
+                  }
+                />
+              ))}
+            </div>
+          ))}
+        </div>
       </SheetContent>
     </Sheet>
   )

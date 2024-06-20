@@ -6,9 +6,9 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from '@/components/shadcn/navigation-menu'
-import { BookOpenTextIcon, Package, PhoneCallIcon, Truck } from 'lucide-react'
 import Link from 'next/link'
 import { ReactElement } from 'react'
+import { getMenuList } from './menu-list'
 
 type MenuItemProps = {
   href: string
@@ -36,37 +36,23 @@ function MenuItem(props: MenuItemProps) {
 }
 
 export function NavigationDesktop() {
+  const menuGroups = getMenuList()
+
   return (
     <NavigationMenu className="hidden space-x-2 lg:flex">
       <NavigationMenuList>
-        <MenuItem
-          href="#"
-          name="Produto"
-          icon={<Package size={16} strokeWidth={1} className="mr-2 h-4 w-4" />}
-        />
-        <MenuItem
-          href="#"
-          name="Sobre-nós"
-          icon={
-            <BookOpenTextIcon
-              size={16}
-              strokeWidth={1}
-              className="mr-2 h-4 w-4"
+        {menuGroups.map((group, index) =>
+          group.menus.map((menu, menuIndex) => (
+            <MenuItem
+              key={`${index}-${menuIndex}`}
+              href={menu.href}
+              name={menu.label}
+              icon={
+                <menu.icon size={16} strokeWidth={1} className="mr-2 h-4 w-4" />
+              }
             />
-          }
-        />
-        <MenuItem
-          href="#"
-          name="Contato"
-          icon={
-            <PhoneCallIcon size={16} strokeWidth={1} className="mr-2 h-4 w-4" />
-          }
-        />
-        <MenuItem
-          href="#"
-          name="Rastrear"
-          icon={<Truck size={16} strokeWidth={1} className="mr-2 h-4 w-4" />}
-        />
+          )),
+        )}
       </NavigationMenuList>
     </NavigationMenu>
   )
