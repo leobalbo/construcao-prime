@@ -1,8 +1,10 @@
 # Contrução Prime
-Este é um projeto de exemplo que mostra como instalar e rodar o código usando pnpm.
 
 ## Status
 🚧 **Em Desenvolvimento** 🚧
+[Visualização do Site](https://construcao-prime-bsi1k3jm1-leobalbos-projects.vercel.app/)
+
+Pode haver bugs no site. Se encontrar algum, por favor, relate abrindo uma ["issue"](https://github.com/leobalbo/construcao-prime/issues). 
 
 ## Pré-requisitos
 - Node.js
