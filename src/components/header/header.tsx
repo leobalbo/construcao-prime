@@ -25,9 +25,9 @@ export async function HeaderComponent() {
       <div className="ml-auto flex items-center gap-2">
         <SignedIn>
           <UserInfo
-            image={user?.imageUrl}
-            name={user?.firstName}
-            email={user?.emailAddresses[0].emailAddress}
+            image={user?.imageUrl || ''}
+            name={user?.firstName || ''}
+            email={user?.emailAddresses[0]?.emailAddress || ''}
             admin={checkRole('admin')}
           />
         </SignedIn>
