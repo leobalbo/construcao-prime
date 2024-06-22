@@ -17,22 +17,22 @@ export function getMenuList(): Group[] {
       groupLabel: '',
       menus: [
         {
-          href: '#',
+          href: '/products',
           label: 'Produto',
           icon: Package,
         },
         {
-          href: '#',
+          href: '/about',
           label: 'Sobre-nós',
           icon: Book,
         },
         {
-          href: '#',
+          href: '/contact',
           label: 'Contato',
           icon: PhoneCall,
         },
         {
-          href: '#',
+          href: '/track',
           label: 'Rastrear',
           icon: Truck,
         },
