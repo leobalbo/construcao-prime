@@ -2,7 +2,8 @@
 
 ## Status
 🚧 **Em Desenvolvimento** 🚧
-[Visualização do Site](https://construcao-prime-bsi1k3jm1-leobalbos-projects.vercel.app/)
+
+[Visualização do Site](https://construcao-prime-git-main-leobalbos-projects.vercel.app/)
 
 Pode haver bugs no site. Se encontrar algum, por favor, relate abrindo uma ["issue"](https://github.com/leobalbo/construcao-prime/issues). 
 
