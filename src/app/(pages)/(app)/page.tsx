@@ -1,4 +1,3 @@
-import { HeaderComponent } from '@/components/header/header'
 import { Button } from '@/components/shadcn/button'
 import { ShoppingBag } from 'lucide-react'
 import Image from 'next/image'
@@ -17,7 +16,6 @@ const companies = [
 export default function Page() {
   return (
     <div>
-      <HeaderComponent />
       <div className="shrink-1 w-full items-center px-4 md:px-6 lg:px-16">
         <div className="grid justify-between py-20 lg:grid-cols-7 lg:items-center lg:gap-x-8 xl:gap-x-12">
           <div className="lg:col-span-3">
