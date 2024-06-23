@@ -20,7 +20,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <a href={`/product/${product.id}`}>
+    <a href={`/products/${product.id}`}>
       <div
         key={product.id}
         className="relative grid gap-4 overflow-hidden rounded-lg border"
