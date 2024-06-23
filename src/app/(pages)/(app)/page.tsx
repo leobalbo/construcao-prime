@@ -55,9 +55,11 @@ export default function Page() {
                 <div className="relative mt-6">
                   <div className="grid grid-cols-2 place-items-center gap-2 md:grid-cols-4 xl:grid-cols-8 xl:gap-4">
                     {companies.map((logo, idx) => (
-                      <img
+                      <Image
                         key={idx}
                         src={`https://cdn.magicui.design/companies/${logo}.svg`}
+                        width={500}
+                        height={500}
                         className="h-10 w-40 px-2 dark:brightness-0 dark:invert"
                         alt={logo}
                       />
