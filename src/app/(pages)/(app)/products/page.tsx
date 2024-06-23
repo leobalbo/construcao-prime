@@ -1,5 +1,5 @@
 'use client'
-import { Badge } from '@/components/shadcn/badge'
+import ProductCard from '@/components/product-card'
 import { Button } from '@/components/shadcn/button'
 import {
   DropdownMenu,
@@ -8,36 +8,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/shadcn/dropdown-menu'
+import { getCategorys } from '@/utils/category-list'
+import { Product, getProductsList } from '@/utils/products-list'
 import { ArrowUp, Filter } from 'lucide-react'
-import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
-import { getProductsList } from './products-list'
-
-const getBadgeClass = (badge: string) => {
-  const defaultClass = 'absolute left-4 top-4 py-1'
-  switch (badge) {
-    case 'Novo':
-      return `${defaultClass} bg-green-500`
-    case 'Promoção':
-      return `${defaultClass} bg-red-500`
-    default:
-      return `${defaultClass} bg-green-500`
-  }
-}
+import { useSearchParams } from 'next/navigation'
 
 export default function Component() {
-  const [selectedCategory, setSelectedCategory] = useState('All')
-  const products = getProductsList()
-
-  const categories = Array.from(
-    new Set(products.map((product) => product.category)),
-  )
-
-  const filteredProducts =
-    selectedCategory === 'All'
-      ? products
-      : products.filter((product) => product.category === selectedCategory)
+  const searchParams = useSearchParams()
+  const category = searchParams.get('category')
+  const categoryList = getCategorys()
+  const products: Product[] = getProductsList(category || '')
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -65,85 +46,29 @@ export default function Component() {
                 <DropdownMenuTrigger asChild>
                   <Button variant="outline" className="shrink-0">
                     <Filter className="mr-2 h-4 w-4" />
-                    {selectedCategory === 'All' ? 'Todos' : selectedCategory}
+                    {category === null ? 'Todos' : category}
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-[200px]">
-                  <DropdownMenuItem
-                    onSelect={() => setSelectedCategory('All')}
-                    className={
-                      selectedCategory === 'All'
-                        ? 'bg-accent text-accent-foreground'
-                        : ''
-                    }
-                  >
-                    Todos
-                  </DropdownMenuItem>
+                  <Link href="/products">
+                    <DropdownMenuItem>Todos</DropdownMenuItem>
+                  </Link>
                   <DropdownMenuSeparator />
-                  {categories.map((category) => (
-                    <DropdownMenuItem
+                  {categoryList.map((category) => (
+                    <Link
+                      href={`/products?category=${category}`}
                       key={category}
-                      onSelect={() => setSelectedCategory(category)}
-                      className={
-                        selectedCategory === category
-                          ? 'bg-accent text-accent-foreground'
-                          : ''
-                      }
                     >
-                      {category}
-                    </DropdownMenuItem>
+                      <DropdownMenuItem>{category}</DropdownMenuItem>
+                    </Link>
                   ))}
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
           </div>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {filteredProducts.map((product) => (
-              <div
-                key={product.id}
-                className="relative grid gap-4 overflow-hidden rounded-lg border"
-              >
-                {/* {product.badge && (
-                  <Badge className={getBadgeClass(product.badge)}>
-                    {product.badge}
-                  </Badge>
-                )} */}
-                <div className="group relative">
-                  <Link
-                    href="#"
-                    className="absolute inset-0 z-10"
-                    prefetch={false}
-                  >
-                    <span className="sr-only">View</span>
-                  </Link>
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    width={200}
-                    height={200}
-                    className="aspect-square w-full object-cover transition-opacity group-hover:opacity-50"
-                  />
-                  {product.badge && (
-                    <Badge className={getBadgeClass(product.badge)}>
-                      {product.badge}
-                    </Badge>
-                  )}
-                </div>
-                <div className="grid gap-2 p-4">
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-semibold">{product.name}</h3>
-                    <h4 className="font-semibold">
-                      {product.price.toLocaleString('pt-BR', {
-                        style: 'currency',
-                        currency: 'BRL',
-                      })}
-                    </h4>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    {product.description}
-                  </p>
-                </div>
-              </div>
+            {products.map((product) => (
+              <ProductCard product={product} key={product.id} />
             ))}
           </div>
         </div>
