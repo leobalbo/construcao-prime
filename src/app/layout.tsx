@@ -1,6 +1,5 @@
 import { Toaster } from '@/components/shadcn/toaster'
 import Transition from '@/components/utils/transition'
-import { ThemeProvider } from '@/providers/theme-provider'
 import { ptBR } from '@clerk/localizations'
 import { ClerkProvider } from '@clerk/nextjs'
 import type { Metadata } from 'next'
@@ -26,15 +25,8 @@ export default function RootLayout({
     <ClerkProvider localization={ptBR}>
       <html lang="pt-BR" className={inter.className}>
         <body>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Transition>{children}</Transition>
-            <Toaster />
-          </ThemeProvider>
+          <Transition>{children}</Transition>
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>
