@@ -8,7 +8,7 @@ export type Product = {
   badge: string
 }
 
-const productList: Product[] = [
+export const productList: Product[] = [
   {
     id: 1,
     name: 'Produto 1',
