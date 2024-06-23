@@ -2,7 +2,7 @@ import { clerkClient } from '@clerk/nextjs/server'
 import { setRole } from './_actions'
 import { SearchUsers } from './_search-users'
 
-export default async function AdminDashboard(params: {
+export default async function AdminDashboardPage(params: {
   searchParams: { search?: string }
 }) {
   const query = params.searchParams.search

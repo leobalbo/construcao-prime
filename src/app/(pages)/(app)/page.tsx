@@ -13,7 +13,7 @@ const companies = [
   'Spotify',
 ]
 
-export default function Page() {
+export default function HomePage() {
   return (
     <div>
       <div className="shrink-1 w-full items-center px-4 md:px-6 lg:px-16">

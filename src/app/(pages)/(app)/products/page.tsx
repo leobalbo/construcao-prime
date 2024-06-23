@@ -14,7 +14,7 @@ import { ArrowUp, Filter } from 'lucide-react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 
-export default function Component() {
+export default function ProductListPage() {
   const searchParams = useSearchParams()
   const category = searchParams.get('category')
   const categoryList = getCategorys()
