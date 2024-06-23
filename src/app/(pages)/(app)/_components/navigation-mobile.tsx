@@ -9,10 +9,10 @@ import {
   SheetTrigger,
 } from '@/components/shadcn/sheet'
 import { LogoSVG } from '@/components/utils/logo'
+import { getMenuList } from '@/utils/menu-list'
 import { Menu } from 'lucide-react'
 import Link from 'next/link'
 import { ReactElement } from 'react'
-import { getMenuList } from './menu-list'
 
 type MenuItemProps = {
   href: string

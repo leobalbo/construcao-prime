@@ -1,9 +1,9 @@
-import { HeaderComponent } from '@/components/header/header'
+import { Header } from './header'
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <HeaderComponent />
+      <Header />
       {children}
     </>
   )

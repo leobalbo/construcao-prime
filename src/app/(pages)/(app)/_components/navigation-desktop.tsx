@@ -6,9 +6,9 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from '@/components/shadcn/navigation-menu'
+import { getMenuList } from '@/utils/menu-list'
 import Link from 'next/link'
 import { ReactElement } from 'react'
-import { getMenuList } from './menu-list'
 
 type MenuItemProps = {
   href: string
