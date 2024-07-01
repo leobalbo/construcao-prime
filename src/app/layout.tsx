@@ -1,5 +1,4 @@
 import { Toaster } from '@/components/shadcn/toaster'
-import Transition from '@/components/utils/transition'
 import { ptBR } from '@clerk/localizations'
 import { ClerkProvider } from '@clerk/nextjs'
 import type { Metadata } from 'next'
@@ -25,7 +24,7 @@ export default function RootLayout({
     <ClerkProvider localization={ptBR}>
       <html lang="pt-BR" className={inter.className}>
         <body>
-          <Transition>{children}</Transition>
+          {children}
           <Toaster />
         </body>
       </html>
