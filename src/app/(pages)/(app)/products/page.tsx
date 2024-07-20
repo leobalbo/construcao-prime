@@ -8,8 +8,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/shadcn/dropdown-menu'
-import { getCategorys } from '@/utils/category-list'
-import { Product, getProductsList } from '@/utils/products-list'
+import { Product } from '@/types/product'
+import { getCategoryList } from '@/app/api/products/get-category-list'
+import { getProductsList } from '@/app/api/products/get-products-list'
 import { ArrowUp, Filter } from 'lucide-react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
@@ -17,7 +18,7 @@ import { useSearchParams } from 'next/navigation'
 export default function ProductListPage() {
   const searchParams = useSearchParams()
   const category = searchParams.get('category')
-  const categoryList = getCategorys()
+  const categoryList = getCategoryList()
   const products: Product[] = getProductsList(category || '')
 
   const scrollToTop = () => {
