@@ -3,14 +3,13 @@ import { ShoppingBag } from 'lucide-react'
 import Image from 'next/image'
 
 const companies = [
-  'Google',
-  'Microsoft',
-  'Amazon',
-  'Netflix',
-  'YouTube',
-  'Instagram',
-  'Uber',
-  'Spotify',
+  'PARCEIRO 1',
+  'PARCEIRO 2',
+  'PARCEIRO 3',
+  'PARCEIRO 4',
+  'PARCEIRO 5',
+  'PARCEIRO 6',
+  'PARCEIRO 7',
 ]
 
 export default function HomePage() {
@@ -50,14 +49,14 @@ export default function HomePage() {
             <div className="py-14">
               <div className="container mx-auto px-4 md:px-8">
                 <h3 className="text-center text-sm font-semibold text-gray-500">
-                  NOSSOS PARCEIROS COLABORADORES
+                  NOSSOS PARCEIROS E COLABORADORES
                 </h3>
                 <div className="relative mt-6">
                   <div className="grid grid-cols-2 place-items-center gap-2 md:grid-cols-4 xl:grid-cols-8 xl:gap-4">
                     {companies.map((logo, idx) => (
                       <Image
                         key={idx}
-                        src={`https://cdn.magicui.design/companies/${logo}.svg`}
+                        src={`https://generated.vusercontent.net/placeholder.svg`}
                         width={500}
                         height={500}
                         className="h-10 w-40 px-2 dark:brightness-0 dark:invert"
