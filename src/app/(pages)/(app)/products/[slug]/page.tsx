@@ -1,3 +1,4 @@
+import NotFoundTemplate from '@/components/not-found-template'
 import { Button } from '@/components/shadcn/button'
 import { Label } from '@/components/shadcn/label'
 import {
@@ -9,9 +10,8 @@ import {
 } from '@/components/shadcn/select'
 import { api } from '@/lib/api-product'
 import { Product } from '@/types/product'
-import { ChevronLeft } from 'lucide-react'
+import { PackageX } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
 
 interface ProductProps {
   params: {
@@ -95,13 +95,13 @@ export default async function ProductPage({ params }: ProductProps) {
           </div>
         </div>
       ) : (
-        <div className="flex h-full flex-col items-center justify-center space-y-4">
-          <h1>Produto não encontrado</h1>
-          <Link href="/products" className="flex gap-2" replace={true}>
-            <ChevronLeft />
-            Voltar
-          </Link>
-        </div>
+        <NotFoundTemplate
+          href="/products"
+          title="Produto não encontrado"
+          description="Lamentamos, mas não conseguimos encontrar o produto que você está procurando."
+          buttonText="Retornar a lista de produtos"
+          icon={<PackageX size={48} className="mx-auto text-primary" />}
+        />
       )}
     </>
   )
